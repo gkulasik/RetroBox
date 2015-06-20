@@ -1,0 +1,6 @@
+<%= form_tag({action: 'upload'}, multipart: true) do %>
+  <%= file_field_tag 'file_to_upload' %>
+  <%= hidden_field_tag 'folder_id', params[:folder_id] %>
+  <%= submit_tag 'Upload' %>
+<% end %>
+
