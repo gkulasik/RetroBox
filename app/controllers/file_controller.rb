@@ -27,7 +27,7 @@ class FileController < ApplicationController
       @file_name = file.name
       @versions = @client.versions_of_file(file)
     else
-      flash[:error] = "Missing file id"
+      flash[:alert] = "Missing file id"
       redirect_to 
     end
   end
@@ -45,25 +45,20 @@ class FileController < ApplicationController
       
       exists = false
       matching_file = nil
-      puts File.extname(file.original_filename.split('.').last)
-      puts "starting loop"
-      puts @items.to_s
-      puts "black"
+      #puts
       @items.each do |f|
-        puts f.name
-        if f.name == file.original_filename && f.parent.id == folder_id
+        if f.name == file.original_filename && f.parent.id == folder.id
           exists = true
           matching_file = f
-          puts "found match"
         end
       end
     
       if exists
           @client.upload_new_version_of_file(file.tempfile.path(), matching_file)
-          flash[:success] = "File updated."
+          flash[:success] = "File #{file.original_filename} updated."
       else
           @client.upload_file(file.tempfile.path(), folder, name: file.original_filename)
-          flash[:success] = "File uploaded."
+          flash[:success] = "File #{file.original_filename} uploaded."
       end
     end
 end

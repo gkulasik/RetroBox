@@ -1,0 +1,6 @@
+<%= form_tag({controller: 'folder', action: 'create'}) do %>
+  <label>Name:</label>
+  <%= text_field_tag 'folder_name' %>    
+  <%= hidden_field_tag 'folder_id', @folder.id %>
+  <%= submit_tag 'Create', class: "tiny button" %>
+<% end %>

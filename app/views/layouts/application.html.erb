@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "RetroBox" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -13,8 +13,45 @@
   </head>
 
   <body>
-
+    <div class="row">
+        <div class="large-12 columns">
+          <div class="panel">
+            <div class="row">
+              <div class="large-7 columns">
+                <h1><%= link_to "RetroBox <i class=\"fi-archive\"></i>".html_safe, root_path %></h1>
+              </div>
+              <div class="large-5 columns">
+                <a data-dropdown="dropUser" aria-controls="dropUser" aria-expanded="false" class='align_right'><h4><%= @user_name %></h4></a>
+                <ul id="dropUser" class="bottom f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+                  <li> <%= link_to "Sign out", main_sign_out_path() %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <%= render 'shared/flash' if !flash.empty? %>
+    
     <%= yield %>
-
+    
+ <footer class="row">
+        <div class="large-12 columns">
+          <hr/>
+          <div class="row">
+            <div class="large-5 columns">
+              <p>© Copyright no one at all. Go to town.</p>
+            </div>
+            <div class="large-7 columns">
+              <ul class="inline-list right">
+                <li><%= link_to "Home", root_path %></li>
+                <li><%= link_to "Boxr Gem", "https://github.com/cburnette/boxr" %></li>
+                <li><%= link_to "Box Content API Docs", "https://box-content.readme.io/#api-docs-directory" %></li>
+                <li><a href="#">GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
   </body>
 </html>

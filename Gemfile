@@ -44,6 +44,8 @@ group :development, :test do
   gem 'spring'
   
   gem 'sqlite3'
+  
+  gem 'quiet_assets'
 end
 
 gem 'ruby-box'

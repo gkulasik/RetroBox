@@ -1,7 +1,7 @@
-<p><%= @file_name %> versions:</p>
+<p><%= file_name %> versions:</p>
 <br />
 <ul>
-<% @versions.each do |v| %>
+<% versions.each do |v| %>
     <li>
         <%= v.name %> - <%= v.modified_at.to_datetime.strftime("%Y/%m/%d - %T") %>
     </li>    

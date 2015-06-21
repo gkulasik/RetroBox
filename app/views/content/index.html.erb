@@ -1,37 +1,14 @@
-
-
-<%= backLinkHelper(@client) %>
-
-
-       
- 
+<%= provide(:title, "#{@folder.name} - RetroBox") %>
+      
       <div class="row">
         <div class="large-12 columns">
-          <div class="panel">
-            <div class="row">
-              <div class="large-7 columns">
-                <h1>RetroBox</h1>
-                <p>Breadcrumbs</p>
-              </div>
-              <div class="large-5 columns">
-                <h3>Users name align topright</h3>
-              </div>
-            </div>
-          </div>
+          <%= breadcrumbs_helper(@client, @folder) %>
         </div>
       </div>
+
     <div class="row">
         <div class="large-12 columns">
-          <ul class="button-group">
-            <li><%= link_to "Upload", file_upload_path(folder_id: params[:folder_id]), class: "button" %></li>
-            <li><%= link_to "Create Folder", folder_create_path(folder_id: params[:folder_id] ), class: "button"%></li>
-             <% if params.has_key?("folder_id") %>
-                <li><%= link_to "Add collaboration", folder_add_collaboration_path(folder_id: params[:folder_id]), class: "button" %></a></li>
-                 <% if !@client.folder_collaborations(@client.folder_from_id(params[:folder_id])).empty? %>
-                  <li><%= link_to "View Collaborations", folder_collaborations_path(folder_id: params[:folder_id]), class: "button" %></li>
-                 <%end%>
-            <%end%>
-          </ul>
+         <%= menu_helper(@client, @folder_id) %>
         </div>
       <hr/>
     </div>
@@ -39,27 +16,10 @@
        <% @folders.each do |f| %>
       <div class="row">
         <div class="large-10 columns">
-          <div class="row">
-            <div class="large-12 columns">
-            <% if f.type == "file" %><i class="fi-page"></i> &nbsp;<%= link_to f.name, @client.download_url(f) %><%end%>
-            <% if f.type == "folder" %> <i class="fi-folder"></i> &nbsp;<%= link_to f.name, content_index_path(folder_id: f.id) %><%end%>
-            <% if f.type == "file" && !@client.versions_of_file(f).empty?%>
-            <%end%>
-            </div>
-          </div>
-
-     
+              <%= listing_helper(@client, f) %>
         </div>
         <div class="large-2 columns">
-          <button data-dropdown="drop<%= f.id %>" aria-controls="drop<%= f.id %>" aria-expanded="false" class="tiny button dropdown">Options</button><br>
-          <ul id="drop<%= f.id %>" data-dropdown-content class="f-dropdown" aria-hidden="true">
-            <li><% if f.type == "file" %><%= link_to "<i class=\"fi-download\"></i> Download".html_safe, @client.download_url(f) %><%end%></li>
-            <li><% if f.type == "file" %><%= link_to "<i class=\"fi-trash\"> </i> Delete".html_safe, file_delete_path(file_id: f.id, folder_id: params[:folder_id]) %><%end%>
-            <% if f.type == "folder" %> <%= link_to "<i class=\"fi-trash\"></i> Delete".html_safe, folder_delete_path(folder_id: f.id) %><%end%></li>
-            <% if f.type == "file" && !@client.versions_of_file(f).empty?%>
-              <li><%= link_to "<i class=\"fi-page-multiple\"></i> Versions".html_safe, file_versions_path(file_id: f.id) %></li>
-            <%end%>
-          </ul>
+          <%= options_helper(@client, f, @folder_id) %>
         </div>
         <hr/>
       </div>
@@ -68,24 +28,4 @@
      
        
      
-      <footer class="row">
-        <div class="large-12 columns">
-          <hr/>
-          <div class="row">
-            <div class="large-5 columns">
-              <p>© Copyright no one at all. Go to town.</p>
-            </div>
-            <div class="large-7 columns">
-              <ul class="inline-list right">
-                <li><a href="#">Section 1</a></li>
-                <li><a href="#">Section 2</a></li>
-                <li><a href="#">Section 3</a></li>
-                <li><a href="#">Section 4</a></li>
-                <li><a href="#">Section 5</a></li>
-                <li><a href="#">Section 6</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     

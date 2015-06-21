@@ -1,6 +1,13 @@
 class MainController < ApplicationController
 skip_before_action :check_session
 
+
+  def sign_out
+    cookies[:access_token] = { value: nil }
+    cookies[:refresh_token] = { value: nil }
+    redirect_to main_authorize_path
+  end
+
   def authorize
     if !params.has_key?("code")
       @session = RubyBox::Session.new({

@@ -1,0 +1,6 @@
+<%= form_tag({controller: 'file', action: 'upload'}, multipart: true) do %>
+  <%= file_field_tag 'file_to_upload' %>
+  <%= hidden_field_tag 'folder_id', @folder.id %>
+  <%= submit_tag 'Upload', class: "tiny button" %>
+<% end %>
+

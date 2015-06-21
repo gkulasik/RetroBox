@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'file/versions'
   get 'folder/create'
   post 'folder/create'
-  get 'folder/add_collaboration'
+  post 'folder/add_collaboration'
   get 'folder/edit_collaboration'
   get 'folder/remove_collaboration'
   get 'folder/collaborations'
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'file/delete'
   get 'folder/delete'
   post 'file/upload'
+  get 'main/sign_out'
   get 'main/authorize'
 
   root 'content#index'
