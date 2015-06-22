@@ -1,5 +1,4 @@
 module ContentHelper
-    
 
     def listing_helper(client, item)
         output = ""
@@ -66,7 +65,7 @@ module ContentHelper
                 nil
         end
         output = "<button data-dropdown=\"drop#{item.id}\" aria-controls=\"drop#{item.id}\" aria-expanded=\"false\" class=\"tiny button dropdown\">Options</button><br />"
-        output += content_tag :ul, id: "drop#{item.id}", "data-dropbox-content": '', class: "f-dropdown", "aria-hidden": true do
+        output += content_tag :ul, id: "drop#{item.id}", "data-dropdown-content": '', class: "f-dropdown", "aria-hidden": true do
                     options.each do |o|
                         concat(content_tag(:li, o))
                     end

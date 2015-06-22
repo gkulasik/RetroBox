@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   
   def check_session
     if cookies[:access_token] == nil || cookies[:refresh_token] == nil
-      flash[:alert] = "Must log in again"
       redirect_to main_authorize_path
-      
     else
       establish_session
     end
@@ -33,9 +31,7 @@ class ApplicationController < ActionController::Base
  
     begin
       @client.root_folder_items()
-    
     rescue StandardError
-      flash[:alert] = "Must log in again"
       redirect_to main_authorize_path
     end
   end
