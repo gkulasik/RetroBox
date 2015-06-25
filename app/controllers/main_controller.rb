@@ -9,26 +9,12 @@ skip_before_action :check_session
   end
 
   def authorize
+    
     if !params.has_key?("code")
-      @session = RubyBox::Session.new({
-                  client_id: ENV['BOX_CLIENT_ID'],
-                  client_secret: ENV['BOX_CLIENT_SECRET']
-                })
-      redirect_to @session.authorize_url(ENV['BOX_REDIRECT_URI'])
+      redirect_to Boxr::oauth_url(URI.encode_www_form_component("box_auth")).to_s   # doesnt matter what you put here.
     else
-    @session = RubyBox::Session.new({
-          client_id: ENV['BOX_CLIENT_ID'],
-          client_secret: ENV['BOX_CLIENT_SECRET']
-        })
-    @token = @session.get_access_token(params[:code])
-
-    @session = RubyBox::Session.new({
-                  client_id: ENV['BOX_CLIENT_ID'],
-                  client_secret: ENV['BOX_CLIENT_SECRET'],
-                  access_token:  @token.token,
-                })
-
-      cookies[:access_token] = { value: @token.token.to_s, expires: 1.day.from_now }
+      @token = Boxr::get_tokens(params[:code])
+      cookies[:access_token] = { value: @token.access_token.to_s, expires: 1.day.from_now }
       cookies[:refresh_token] = { value: @token.refresh_token.to_s, expires: 1.day.from_now }
       redirect_to content_index_path
     end

@@ -14,7 +14,7 @@ class FileController < ApplicationController
   
   def delete
     file = @client.file_from_id(params[:file_id])
-      @client.delete_file()
+      @client.delete_file(file)
       flash[:success] = "File #{file.name} deleted"
       if params.has_key?("folder_id")
         redirect_to content_index_path(folder_id: params[:folder_id])

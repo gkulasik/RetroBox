@@ -51,7 +51,6 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
-gem 'ruby-box'
 gem 'boxr'
 gem 'figaro'
 gem 'foundation-rails'

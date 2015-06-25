@@ -1,5 +1,8 @@
 <p><%= folder_name %> collaborators</p>
 
+
+
+<% if !collaborators.empty? %>
 <ul>
     <% collaborators.each do |c| %>
     <li><%= "#{c.accessible_by.name} - #{c.accessible_by.login} - Since: #{c.created_at.to_datetime.strftime("%Y/%m/%d - %T")} - Level: #{c.role}"  %>
@@ -8,3 +11,6 @@
     </li>
     <%end%>
 </ul>
+<% else %>
+<p>No collaborators on this folder yet. Add some on the 'Add' tab!</p>
+<% end %>

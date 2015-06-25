@@ -58,9 +58,7 @@ module ContentHelper
                 options << view_versions_helper(item) if  !client.versions_of_file(item).empty?
             when "folder"
                 options << link_to("<i class=\"fi-trash\"></i> Delete".html_safe, folder_delete_path(folder_id: item.id))
-                options << add_collaboration_helper(item.id)
-                options << view_collaborators_helper(item.id) if !@client.folder_collaborations(@client.folder_from_id(item.id)).empty?
-
+                options << collaboration_helper(item)
             else
                 nil
         end
