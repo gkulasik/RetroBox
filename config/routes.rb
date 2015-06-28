@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'file/upload'
   get 'file/versions'
+  post 'folder/edit'
   get 'folder/create'
   post 'folder/create'
   post 'folder/add_collaboration'

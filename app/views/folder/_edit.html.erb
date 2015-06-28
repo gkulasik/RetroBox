@@ -1,0 +1,9 @@
+<%= form_tag({controller: 'folder', action: 'edit'}) do %>
+<%= @folder.path %>
+  <label>Rename:</label>
+  <%= text_field_tag 'folder_name' %>    
+  <%= hidden_field_tag 'folder_id', @folder.id %>
+  <label>Move to (ex. /folder1/folder2 or / for root)</label>
+  <%= text_field_tag 'move_to' %>
+  <%= submit_tag 'Save', class: "tiny button" %>
+<% end %>

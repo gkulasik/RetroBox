@@ -19,6 +19,7 @@ module ContentHelper
         options = []
         options << upload_helper()
         options << create_folder_helper()
+        options << edit_folder_helper() unless folder_id.nil?
 
         output = content_tag :ul, class: "button-group" do 
                     options.each do |o|

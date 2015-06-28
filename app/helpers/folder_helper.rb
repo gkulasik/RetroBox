@@ -32,7 +32,6 @@ module FolderHelper
         end
         
         def collaboration_helper(folder)
-            folder_id = folder.id
                         "<a href=\"#\" data-reveal-id=\"viewCollaborators#{folder.id}\"><i class=\"fi-torsos-all\"></i> Collaboration</a>
 
             <div id=\"viewCollaborators#{folder.id}\" class=\"reveal-modal\" data-reveal aria-labelledby=\"Collaborators\" aria-hidden=\"true\" role=\"dialog\">
@@ -55,4 +54,44 @@ module FolderHelper
             </div>".html_safe
         end
         
+        def edit_folder_helper()
+               "<a class=\"small button\" data-dropdown=\"dropEditFolder\" aria-controls=\"dropEditFolder\" aria-expanded=\"false\"><strong><i class=\"fi-widget\"></i> Edit Folder</strong></a>
+                <div id=\"dropEditFolder\" data-dropdown-content class=\"medium f-dropdown content\" aria-hidden=\"true\" tabindex=\"-1\">
+                #{ render "folder/edit"}
+                </div>".html_safe
+        
+        end
+        
+
+        # Unused not implemented
+        def folder_structure_helper()
+          output =  "<script>$(function () { $('#folders').jstree(); });</script>
+            <div id=\"folders\">"
+            output += content_tag :ul do
+                        @client.root_folder_items().each do |item|
+                          concat(sub_folder_traverser_helper(item))
+                        end
+                      end
+            output+= "</div>"
+            output
+        end
+        
+        
+        private 
+        
+        def sub_folder_traverser_helper(item)
+          to_return = ""
+          if item.type == "folder"
+            to_return += "<li> #{item.name}#{sub_sub_folder_traverser_helper(item).html_safe}</li>"
+          end
+          to_return.html_safe
+        end
+        
+        def sub_sub_folder_traverser_helper(item)
+          content_tag :ul do
+            @client.folder_items(item).each do |i|
+              concat(sub_folder_traverser_helper(i))
+            end
+          end
+        end
 end

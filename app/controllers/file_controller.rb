@@ -30,14 +30,14 @@ class FileController < ApplicationController
       @versions = @client.versions_of_file(file)
     else
       flash[:alert] = "Missing file id"
-      redirect_to 
+      redirect_to root_path
     end
   end
   
   private
   
     def uploadHelper(file, folder_id, url)
-      if params.has_key?("folder_id") && !params[:folder_id].blank?
+      if !params[:folder_id].empty?
        folder = @client.folder_from_id(folder_id) 
       else
        folder = @client.folder_from_id('0')
@@ -47,7 +47,7 @@ class FileController < ApplicationController
       
       exists = false
       matching_file = nil
-      #puts
+
       @items.each do |f|
         if f.name == file.original_filename && f.parent.id == folder.id
           exists = true

@@ -21,6 +21,42 @@ class FolderController < ApplicationController
     end
   end
   
+  def edit
+    if(params[:folder_name].empty? && params[:move_to].empty?)
+      flash[:alert] = "Error: Must fill in at least one field before submitting."
+      redirect_to root_path
+    end
+    fn = params[:folder_name]
+    mt = params[:move_to]
+    begin
+      @client.update_folder(@client.folder_from_id(params[:folder_id]), 
+      name: fn.empty? ? nil : fn, 
+      parent: mt.empty? ? nil : move_to_determiner(mt))
+    rescue StandardError
+      flash[:alert] = "Error: Folder not found, check spelling."
+    end
+    flash[:success] = "Folder updated."
+    if mt.empty?
+      redirect_to content_index_path(folder_id: params[:folder_id])
+    else
+      redirect_to content_index_path(folder_id: move_to_determiner(mt).id)
+    end
+  end
+  
+  
+  
+  def delete
+    folder = @client.folder_from_id(params[:folder_id])
+    parent_id = folder.parent.id
+    @client.delete_folder(folder, recursive: true)
+    flash[:success] = "Folder #{folder.name} deleted."
+      if parent_id != '0'
+        redirect_to content_index_path(folder_id: parent_id)
+      else
+        redirect_to content_index_path
+      end
+  end
+  
   def add_collaboration
     begin
       if params.has_key?("folder_id") && !params[:folder_id].empty? && params.has_key?("user_email")
@@ -62,15 +98,10 @@ class FolderController < ApplicationController
      end
   end
   
-  def delete
-    folder = @client.folder_from_id(params[:folder_id])
-    parent_id = folder.parent.id
-    @client.delete_folder(folder, recursive: true)
-    flash[:success] = "Folder #{folder.name} deleted."
-      if parent_id != '0'
-        redirect_to content_index_path(folder_id: parent_id)
-      else
-        redirect_to content_index_path
-      end
+  
+  private 
+  
+  def move_to_determiner(path)
+    @client.folder_from_path(path)
   end
 end
