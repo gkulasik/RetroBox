@@ -1,4 +1,4 @@
-== RetroBox By Retrofit Inc.
+== RetroBox by Retrofit Inc.
 
 Retrofit is a holistic weightloss solution helping thousands of people across the country. Check us out at www.retrofitme.com.
 
@@ -6,15 +6,16 @@ Retrofit is a holistic weightloss solution helping thousands of people across th
 It is important to Retrofit as well as to me to give back to the community. This application was built as a proof of concept to learn about using APIs, interfacing with Box, authentication and much more. 
 This proof of concept is being released so that it can hopefully help others who are struggling to learn to use Boxr or other related APIs.
 
-The application has no test suite and is not thoroughly tested. Most functions have been found to work the way they intended and edge cases have little to no testing. 
-If there are critical bugs I will try my best to fix them in a timely manner thought this release is mostly focused on helping other developers get a running start with Box and Boxr.
-This application has no database and will not keep any of your information. All your information is stored in local cookies which you can clear at any time by logging out or clearing your cookies. 
+The application has no test suite and is not thoroughly tested. I have tried all the functions manually though edge cases have little to no testing. 
+If there are critical bugs please report them and I will try my best to fix them in a timely manner. Thought this release is mostly focused on helping other developers get a running start with Box and Boxr.
 
-Foundation was used to make the application pretty. Boxr was used to interface with the Box REST api. 
+This application has no database and WILL NOT keep any of your information. All your information is stored in local cookies which you can clear at any time by logging out or clearing your cookies. 
 
+Check out the live demo at: retrobox.herokuapp.com
 
 * Ruby version: 2.2.1
 * Rails version: 4.2.1
 * Database creation: No DB at all. This app only uses your local cache.
 * No tests
 * Gems: Boxr, Foundation
+Boxr was used to interface with the Box REST api. Foundation was used to make the application pretty.
