@@ -15,11 +15,10 @@ module ContentHelper
     
     
     def menu_helper(client, folder_id)
-        
         options = []
         options << upload_helper()
         options << create_folder_helper()
-        options << edit_folder_helper() unless folder_id.nil?
+        options << edit_folder_helper() unless (folder_id.nil? || folder_id == "0")
 
         output = content_tag :ul, class: "button-group" do 
                     options.each do |o|
@@ -38,8 +37,6 @@ module ContentHelper
             ancestors << next_folder.parent
             next_folder = client.folder_from_id(next_folder.parent.id)
         end
-        puts "breadcrumbs"
-        puts ancestors
         output = content_tag :ul, class: "breadcrumbs" do
                     concat(content_tag(:li, link_to("<i class=\"fi-home\"></i>  ALL FILES".html_safe, root_path())))
                         ancestors.reverse.each do |a|

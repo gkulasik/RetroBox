@@ -1,28 +1,20 @@
-== README
+== RetroBox By Retrofit Inc.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Retrofit is a holistic weightloss solution helping thousands of people across the country. Check us out at www.retrofitme.com.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+It is important to Retrofit as well as to me to give back to the community. This application was built as a proof of concept to learn about using APIs, interfacing with Box, authentication and much more. 
+This proof of concept is being released so that it can hopefully help others who are struggling to learn to use Boxr or other related APIs.
+
+The application has no test suite and is not thoroughly tested. Most functions have been found to work the way they intended and edge cases have little to no testing. 
+If there are critical bugs I will try my best to fix them in a timely manner thought this release is mostly focused on helping other developers get a running start with Box and Boxr.
+This application has no database and will not keep any of your information. All your information is stored in local cookies which you can clear at any time by logging out or clearing your cookies. 
+
+Foundation was used to make the application pretty. Boxr was used to interface with the Box REST api. 
+
+
+* Ruby version: 2.2.1
+* Rails version: 4.2.1
+* Database creation: No DB at all. This app only uses your local cache.
+* No tests
+* Gems: Boxr, Foundation

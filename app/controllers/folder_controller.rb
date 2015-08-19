@@ -28,18 +28,20 @@ class FolderController < ApplicationController
     end
     fn = params[:folder_name]
     mt = params[:move_to]
+    flash[:success] = "Folder updated."
     begin
       @client.update_folder(@client.folder_from_id(params[:folder_id]), 
       name: fn.empty? ? nil : fn, 
       parent: mt.empty? ? nil : move_to_determiner(mt))
     rescue StandardError
       flash[:alert] = "Error: Folder not found, check spelling."
+      flash[:success] = nil
     end
-    flash[:success] = "Folder updated."
+
     if mt.empty?
       redirect_to content_index_path(folder_id: params[:folder_id])
     else
-      redirect_to content_index_path(folder_id: move_to_determiner(mt).id)
+      redirect_to content_index_path(folder_id: move_to_determiner(mt))
     end
   end
   
@@ -102,6 +104,11 @@ class FolderController < ApplicationController
   private 
   
   def move_to_determiner(path)
-    @client.folder_from_path(path)
+   to_move =  @client.folder_from_path(path)
+   if(to_move == 0)
+     0
+   else
+     to_move.id
+   end
   end
 end
