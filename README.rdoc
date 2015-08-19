@@ -11,7 +11,7 @@ If there are critical bugs please report them and I will try my best to fix them
 
 This application has no database and WILL NOT keep any of your information. All your information is stored in local cookies which you can clear at any time by logging out or clearing your cookies. 
 
-Check out the live demo at: retrobox.herokuapp.com
+Check out the live demo at: http://retrobox.herokuapp.com
 
 * Ruby version: 2.2.1
 * Rails version: 4.2.1
