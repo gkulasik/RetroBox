@@ -7,17 +7,7 @@ module FolderHelper
         end
         
         def add_collaboration_helper(folder_id)
-            
             "#{render 'folder/add_collaborators', :folder_id => folder_id}".html_safe
-            
-            
-            
-            
-            
-        #   "<a data-dropdown=\"dropAddCollaboration#{folder_id}\" aria-controls=\"dropAddCollaboration#{folder_id}\" aria-expanded=\"false\" data-options=\"align:left\"><i class=\"fi-torsos-all\"></i> Add Collaborator</a>
-        #     <div id=\"dropAddCollaboration#{folder_id}\" data-dropdown-content class=\"large f-dropdown\" aria-hidden=\"true\" tabindex=\"-1\">
-        #       #{render 'folder/add_collaborators', :folder_id => folder_id}
-        #     </div>".html_safe
         end
         
         def view_collaborators_helper(folder_id)
@@ -63,7 +53,7 @@ module FolderHelper
         end
         
 
-        # Unused not implemented
+        # Unused - would be cool though
         def folder_structure_helper()
           output =  "<script>$(function () { $('#folders').jstree(); });</script>
             <div id=\"folders\">"
