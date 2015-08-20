@@ -3,11 +3,11 @@
 Retrofit is a holistic weightloss solution helping thousands of people across the country. Check us out at www.retrofitme.com.
 
 
-It is important to Retrofit as well as to me to give back to the community. This application was built as a proof of concept to learn about using APIs, interfacing with Box, authentication and much more. 
-This proof of concept is being released so that it can hopefully help others who are struggling to learn to use Boxr or other related APIs.
+It is important to me, as well as Retrofit, to give back to the community. This application was built as a proof of concept to learn about using APIs, interfacing with Box, authentication and much more. 
+This application is being released so that it can, hopefully, help others who are struggling to learn to use Boxr or other related APIs.
 
-The application has no test suite and is not thoroughly tested. I have tried all the functions manually though edge cases have little to no testing. 
-If there are critical bugs please report them and I will try my best to fix them in a timely manner. Thought this release is mostly focused on helping other developers get a running start with Box and Boxr.
+This application has no test suite and is not thoroughly tested. I have tried all the functions manually and all seem to work as intended. 
+If there are critical bugs please report them and I will try my best to fix them in a timely manner. Thought this release is primarily focused on helping other developers get a running start with Box and Boxr.
 
 This application has no database and WILL NOT keep any of your information. All your information is stored in local cookies which you can clear at any time by logging out or clearing your cookies. 
 
