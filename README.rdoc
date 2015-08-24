@@ -10,6 +10,7 @@ This application has no test suite and is not thoroughly tested. I have tried al
 If there are critical bugs please report them and I will try my best to fix them in a timely manner. Thought this release is primarily focused on helping other developers get a running start with Box and Boxr.
 
 This application has no database and WILL NOT keep any of your information. All your information is stored in local cookies which you can clear at any time by logging out or clearing your cookies. 
+NOTE: Since this application has no database it also has no models and puts most of the logic in the controllers.
 
 Check out the live demo at: http://retrobox.herokuapp.com
 
