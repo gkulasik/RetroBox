@@ -10,28 +10,18 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def handle_expire
-    redirect_to main_authorize_path
-  end
-  
   def save_tokens(access, refresh)
-      cookies[:access_token] = { value: access.to_s, expires: 1.day.from_now }
-      cookies[:refresh_token] = { value: refresh.to_s, expires: 1.day.from_now }
+      cookies[:access_token] = access.to_s
+      cookies[:refresh_token] = refresh.to_s
   end
   
   def establish_session
     token_refresh_callback = lambda {|access, refresh, identifier| save_tokens(access, refresh)}
-    @client = Boxr::Client.new(cookies[:access_token], 
+    @client ||= Boxr::Client.new(cookies[:access_token], 
                           refresh_token: cookies[:refresh_token],
                           client_id: ENV['BOX_CLIENT_ID'],
                           client_secret: ENV['BOX_CLIENT_SECRET'],
                           &token_refresh_callback)
- 
-    begin
-      @client.root_folder_items()
-    rescue StandardError
-      redirect_to main_authorize_path
-    end
   end
 
 end
