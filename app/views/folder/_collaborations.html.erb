@@ -5,10 +5,12 @@
 <% if !collaborators.empty? %>
 <ul>
     <% collaborators.each do |c| %>
-    <li><%= "#{c.accessible_by.name} - #{c.accessible_by.login} - Since: #{c.created_at.to_datetime.strftime("%Y/%m/%d - %T")} - Level: #{c.role}"  %>
-    | <%= link_to "Edit", folder_edit_collaboration_path(collaboration_id: c.id, folder_id: folder_id)%> 
-    | <%= link_to "Remove", folder_remove_collaboration_path(collaboration_id: c.id, folder_id: folder_id) %>
-    </li>
+        <% if !c.accessible_by.nil? %>
+            <li><%= "#{c.accessible_by.name} - #{c.accessible_by.login} - Since: #{c.created_at.to_datetime.strftime("%Y/%m/%d - %T")} - Level: #{c.role}"%>
+            | <%= link_to "Edit", folder_edit_collaboration_path(collaboration_id: c.id, folder_id: folder_id)%> 
+            | <%= link_to "Remove", folder_remove_collaboration_path(collaboration_id: c.id, folder_id: folder_id) %>
+            </li>
+        <% end %>
     <%end%>
 </ul>
 <% else %>
