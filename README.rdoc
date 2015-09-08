@@ -4,10 +4,15 @@ Retrofit is a holistic weightloss solution helping thousands of people across th
 
 
 It is important to me, as well as Retrofit, to give back to the community. This application was built as a proof of concept to learn about using APIs, interfacing with Box, authentication and much more. 
-This application is being released so that it can, hopefully, help others who are struggling to learn to use Boxr or other related APIs.
+This application is being released so that it can, hopefully, help others who are struggling to learn to use Boxr or other related APIs as well as OAuth.
 
-This application has no test suite and is not thoroughly tested. I have tried all the functions manually and all seem to work as intended. 
+This application has no test suite and is not thoroughly tested. I have tried all the functions manually and all seem to work as intended. I recommend using a personal or test NON enterprise account for testing and playing around with the Heroku app (See known issues). 
 If there are critical bugs please report them and I will try my best to fix them in a timely manner. Thought this release is primarily focused on helping other developers get a running start with Box and Boxr.
+
+Known issues:
+* This was tested using a personal test account. It cannot handle permissions at the moment so many enterprise accounts will fail to work.
+* This application loads everything in a folder so if a folder contains hundred of files or folders it may timeout on Heroku.
+
 
 This application has no database and WILL NOT keep any of your information. All your information is stored in local cookies which you can clear at any time by logging out or clearing your cookies. 
 NOTE: Since this application has no database it also has no models and puts most of the logic in the controllers.
@@ -19,4 +24,4 @@ Check out the live demo at: http://retrobox.herokuapp.com
 * Database creation: No DB at all. This app only uses local cache.
 * No tests
 * Gems: Boxr, Foundation
-Boxr was used to interface with the Box REST api. Foundation was used to make the application pretty.
+Boxr was used to interface with the Box REST API. Foundation was used to make the application pretty.
